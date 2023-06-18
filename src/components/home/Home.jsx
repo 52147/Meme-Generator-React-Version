@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from "react";
+
 import "./Home.css";
 
 export const Home = () => {
   const canvasRef = useRef(null);
-  const [textTop, setTextTop] = useState("I use coding torque to learn");
+  const [textTop, setTextTop] = useState("Hello How are you");
   const [textBottom, setTextBottom] = useState(
-    "web development by creating projects"
+    "I great thank you"
   );
   const [textSizeTop, setTextSizeTop] = useState(10);
   const [textSizeBottom, setTextSizeBottom] = useState(10);
@@ -13,9 +14,27 @@ export const Home = () => {
 
   const [uploadedImage, setUploadedImage] = useState(null);
   const [uploadedImageURL, setUploadedImageURL] = useState("");
-  const [imgURL, setImgURL] = useState(
-    "https://imgflip.com/s/meme/The-Most-Interesting-Man-In-The-World.jpg"
-  ); // Replace with your default image URL
+  // const [imgURL, setImgURL] = useState(
+  //   "https://imgflip.com/s/meme/The-Most-Interesting-Man-In-The-World.jpg"
+  // ); // Replace with your default image URL
+  const [imgURL, setImgURL] = useState("https://cors-anywhere.herokuapp.com/https://imgflip.com/s/meme/The-Most-Interesting-Man-In-The-World.jpg");
+  const fetchImage = async () => {
+    try {
+      const response = await fetch("https://cors-anywhere.herokuapp.com/https://imgflip.com/s/meme/The-Most-Interesting-Man-In-The-World.jpg", {
+        headers: {
+          "X-Requested-With": "XMLHttpRequest"
+        }
+      });
+      const blob = await response.blob();
+      setImgURL(URL.createObjectURL(blob));
+    } catch (error) {
+      console.error("Error fetching image:", error);
+    }
+  };
+  
+  useEffect(() => {
+    fetchImage();
+  }, []);
 
   const handleImageURLChange = (event) => {
     setImgURL(event.target.value);
@@ -43,6 +62,7 @@ export const Home = () => {
     image.onload = () => {
       // checks if imgURL is defined. If it is, it sets the canvas width and height to match the loaded image's dimensions using canvas.width = image.width and canvas.height = image.height. It then draws the image on the canvas using ctx.drawImage(image, 0, 0, canvas.width, canvas.height).
       if (imgURL) {
+        image.crossOrigin = "anonymous";
         canvas.width = image.width;
         canvas.height = image.height;
         // draw the url or upload image on the canvas
@@ -133,7 +153,7 @@ export const Home = () => {
     const canvas = canvasRef.current;
 
     // Convert the canvas to a data URL
-    const dataURL = canvas.toDataURL("image/png");
+    const dataURL = canvas.toDataURL("image/png", { crossOrigin: "anonymous" });
 
     // Create a download link
     const link = document.createElement("a");
