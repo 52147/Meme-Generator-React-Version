@@ -12,4 +12,4 @@ Regarding the URLs, I use a header called "blob." This header be referring to th
 
 However, while using the CORS Anywhere proxy service, I received advice from the ChatGPT suggesting that relying on third-party proxy services like CORS Anywhere can increase latency and create dependencies. Instead, it was recommended that I set up my own proxy server using cloud functions if I had the capability to do so. This approach would help reduce workload and eliminate the need for relying on third-party proxy services.
 
-If you have any specific questions or need further assistance with your project, feel free to ask!
+If you have any specific questions or need further assistance with my project, feel free to ask!
