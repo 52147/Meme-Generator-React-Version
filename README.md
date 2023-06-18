@@ -2,7 +2,7 @@
 
 This is my meme generator project using React.
 
-I found this project form a website that provided tutorials on building a meme generator. However, the website's implementation was based on vanilla JavaScript. So, I took on the task of transferring it to a React version.
+I found this project form a website that provided tutorials on building a meme generator. However, the [website](https://codingtorque.com/meme-generator-using-javascript/)'s implementation was based on vanilla JavaScript. So, I took on the task of transferring it to a React version.
 
 During this project, I learned how to use the canvas element to draw images and text on the screen. One of the significant challenges I encountered was dealing with the CORS (Cross-Origin Resource Sharing) problem. This issue prevented me from downloading meme pictures when using image URLs.
 
